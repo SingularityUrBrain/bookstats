@@ -8,11 +8,11 @@ namespace BookStats.Models
 {
     public class User : IdentityUser
     {
-        public User()
-        {
-            BookMarks = new HashSet<BookMark>();
-            BookNotes = new HashSet<BookNote>(); // ???
-        }
+        //public User()
+        //{
+        //    BookMarks = new HashSet<BookMark>();
+        //    BookNotes = new HashSet<BookNote>(); // ???
+        //}
 
         [MaxLength(64)]
         public string Name { get; set; }

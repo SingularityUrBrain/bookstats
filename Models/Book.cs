@@ -20,10 +20,6 @@ namespace BookStats.Models
         public int AuthorId { get; set; }
 
         [Required]
-        [Display(Name = "Genre")]
-        public int GenreId { get; set; }
-
-        [Required]
         public int PagesNumber { get; set; }
 
         [Required]
@@ -61,6 +57,6 @@ namespace BookStats.Models
             }
         }
 
-        public virtual ICollection<Genre> Genres { get; set; }
+        public virtual ICollection<BookGenre> BookGenres { get; set; }
     }
 }

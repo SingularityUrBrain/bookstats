@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using BookStats.Models.SharedModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookStats.Models
 {
-    public class Author
+    public class Author : Entity
     {
-        public Author()
-        {
-            Books = new HashSet<Book>();
-        }
+        //public Author()
+        //{
+        //    Books = new HashSet<Book>();
+        //}
 
         [Required(ErrorMessage = "First Name Required")]
         [Display(Name = "First Name")]
