@@ -1,0 +1,60 @@
+﻿@model UserRegisterViewModel
+
+@{
+    ViewData["Title"] = "Sign up";
+}
+
+<div class="row justify-content-center align-items-center">
+    <div class="col col-sm-12 col-md-8 col-lg-5 col-xl-5">
+        <div class="text-left">
+            <h2>@ViewData["Title"]</h2>
+        </div>
+        <hr />
+        <form method="post" asp-controller="Auth" asp-action="Register">
+            <div class="form-group">
+                <label asp-for="Name"></label><br />
+                <input class="form-control" placeholder="Name" asp-for="Name"/>
+                <span class="badge badge-pill badge-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname"></label><br />
+                <input class="form-control" placeholder="Surname" asp-for="Surname" />
+                <span class="badge badge-pill badge-danger" asp-validation-for="Surname"></span>
+            </div>
+            <div class="alert alert-danger form-element mt-2" asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="Email"></label><br />
+                <input class="form-control" placeholder="Email" asp-for="Email" />
+                <span class="badge badge-pill badge-danger" asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName"></label><br />
+                <input class="form-control" placeholder="Username" asp-for="UserName" />
+                <span class="badge badge-pill badge-danger" asp-validation-for="UserName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label><br />
+                <input class="form-control" placeholder="Password" asp-for="Password" />
+                <span class="badge badge-pill badge-danger" asp-validation-for="Password"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label><br />
+                <input class="form-control" placeholder="Confirm password" asp-for="ConfirmPassword" />
+                <span class="badge badge-pill badge-danger" asp-validation-for="ConfirmPassword"></span>
+            </div>
+            <div class="pt-2 text-left d-flex flex-row bd-highlight">
+                <input class="btn btn-primary mb-3" type="submit" value="@ViewData["Title"]" />
+            </div>
+            <hr />
+            <div>
+                <p class="text-black-50">
+                    Already signed up?
+                    <a class="text-mute" asp-controller="Auth" asp-action="Login">
+                        <u>Sign in</u>
+                    </a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+

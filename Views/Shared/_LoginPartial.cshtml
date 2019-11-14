@@ -1,26 +1,43 @@
 ﻿@using Microsoft.AspNetCore.Identity
+
+
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
-</ul>
+    <ul class="navbar-nav ml-auto">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-item nav-link dropdown-toggle mr-md-2" asp-controller="Account" asp-action="Index" id="acc-actions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hello, @User.Identity.Name
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acc-actions">
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Index">My profile</a>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Edit">Edit profile</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-controller="Users" asp-action="Index">Manage users</a>
+                        <a class="dropdown-item" asp-controller="Roles" asp-action="Index">Manage roles</a>
+                    }
+                    @if (User.IsInRole("Moderator"))
+                    {
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">Manage books</a>
+                        <a class="dropdown-item">Manage authors</a>
+                    }
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Sign out</a>
+                </div>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-controller="Auth" asp-action="Login">Sign in</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-controller="Auth" asp-action="Register">Sign Up</a>
+            </li>
+        }
+    </ul>

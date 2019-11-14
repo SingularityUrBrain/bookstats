@@ -1,0 +1,51 @@
+﻿@model UserLoginViewModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="mt-2 container-fluid">
+    <div class="row justify-content-center align-items-center">
+        <div class="col col-sm-6 col-md-6 col-lg-5 col-xl-5">
+            <div class="text-left">
+                <h3 class="display-6">@ViewData["Title"]</h3>
+            </div>
+            <hr />
+            <form method="post" asp-controller="Auth" asp-action="Login" asp-route-returnUrl="@Model.ReturnURL">
+                <div class="alert alert-danger form-element mt-2" asp-validation-summary="ModelOnly">
+                </div>
+
+                <div class="form-group text-left">
+                    <label asp-for="UserName"></label><br />
+                    <input class="form-control" asp-for="UserName" />
+                    <span style="color: rgb(233, 0, 65)" asp-validation-for="UserName"></span>
+                </div>
+
+                <div class="form-group text-left">
+                    <label asp-for="Password"></label><br />
+                    <input class="form-control" asp-for="Password" />
+                    <span style="color: rgb(233, 0, 65)" asp-validation-for="Password"></span>
+                </div>
+
+                <div class="form-group text-left">
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="RememberMe" />
+                        <label class="form-check-label" asp-for="RememberMe"></label>
+                    </div>
+                </div>
+
+                <div class="text-left d-flex flex-row bd-highlight">
+                    <div>
+                        <input class="btn btn-primary" type="submit" value="@ViewData["Title"]" />
+                    </div>
+                    <div class="ml-auto mt-auto">
+                        <a class="btn btn-link" asp-controller="Auth" asp-action="Register">
+                            <u>Sign up</u>
+                        </a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

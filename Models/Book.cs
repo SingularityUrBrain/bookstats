@@ -29,12 +29,8 @@ namespace BookStats.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Display(Name = "Upload Img")]
-        [NotMapped]
-        public IFormFile ImgFile { get; set; } // may i rid of it? 
-
         [StringLength(50)]
-        public string ImgUrl { get; set; }  // ?
+        public string ImgUrl { get; set; }  // ------
 
         [StringLength(50)]
         public string Publisher { get; set; }
