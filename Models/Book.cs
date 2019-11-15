@@ -11,18 +11,15 @@ namespace BookStats.Models
     {
         private static double rating;
 
-
         [StringLength(100)]
         public string Title { get; set; }
 
-        [Required]
         [Display(Name = "Author")]
         public int AuthorId { get; set; }
 
-        [Required]
         public int PagesNumber { get; set; }
 
-        [Required]
+
         [Display(Name = "Publication Year")]
         public int PublicationYear { get; set; }
 
@@ -30,8 +27,9 @@ namespace BookStats.Models
         public string Description { get; set; }
 
         [StringLength(50)]
-        public string ImgUrl { get; set; }  // ------
-
+        public string ImgUrl => System.IO.File.Exists($"/pictures/book/{Id}.jpg") ?
+            $"/pictures/book/{Id}.jpg" : $"/pictures/default_book.jpg";
+            
         [StringLength(50)]
         public string Publisher { get; set; }
 

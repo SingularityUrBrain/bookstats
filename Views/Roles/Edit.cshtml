@@ -1,11 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @model ChangeRoleViewModel
 
-<h2>Edit roles for user @Model.UserEmail</h2>
+<h3>Edit roles for user @Model.UserEmail</h3>
 
 <form asp-action="Edit" method="post">
     <input type="hidden" name="userId" value="@Model.UserID" />
-    <div class="form-group">
+    <div class="form-group mt-3">
         @foreach (IdentityRole role in Model.AllRoles)
         {
             <div class="input-group mb-3">

@@ -37,8 +37,8 @@ namespace BookStats.ViewModels
 
         public IFormFile Photo { get; set; }
 
-        public string PhotoPath => System.IO.File.Exists($"/pictures/user/{Id}.jpg") ?
-            $"/pictures/user/{Id}.jpg" : $"/pictures/default.png";  // TODO: add default.png
+        public string PhotoUrl => System.IO.File.Exists($"/pictures/user/{Id}.jpg") ?
+            $"/pictures/user/{Id}.jpg" : $"/pictures/default.png";
 
         public string StatusMessage { get; internal set; }
     }

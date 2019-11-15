@@ -8,12 +8,6 @@ namespace BookStats.Models
 {
     public class User : IdentityUser
     {
-        //public User()
-        //{
-        //    BookMarks = new HashSet<BookMark>();
-        //    BookNotes = new HashSet<BookNote>(); // ???
-        //}
-
         [MaxLength(64)]
         public string Name { get; set; }
 
@@ -21,9 +15,10 @@ namespace BookStats.Models
         public string Surname { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime CreateAt { get; set; } = DateTime.Now;
-        public string PhotoUrl { get; set; } // ??
-        
+        public DateTime RegisterAt { get; set; } = DateTime.Now;
+        public string PhotoUrl => System.IO.File.Exists($"/pictures/user/{Id}.jpg") ?
+            $"/pictures/user/{Id}.jpg" : $"/pictures/default.png";
+
         public virtual ICollection<BookMark> BookMarks { get; set; }
         public virtual ICollection<BookNote> BookNotes { get; set; }
         public virtual ICollection<ReadingState> ReadingStates { get; set; } // ???

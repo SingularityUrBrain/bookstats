@@ -5,18 +5,16 @@
 }
 
 <body>
-    <div class="text-left mt-2">
+    <div class="text-left mt-2 w-75">
         <h3 class="display-6">@ViewData["Title"]</h3>
+        <hr />
     </div>
-    <hr />
     <div>
-        <div class="list-group">
+        <ul class="list-group w-75">
             @foreach (var a in Model.OrderByDescending(a => a.NormalizedUserName))
             {
-            <p>@a.Name @a.UserName @a.Email</p>
-            <br >
-                @*@await Component.InvokeAsync("UserManagement", new { id = a.Id });*@
+                @await Component.InvokeAsync("UserInfo", new { id = a.Id });
             }
-        </div>
+        </ul>
     </div>
 </body>

@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookStats.Models;
 using BookStats.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStats.Controllers
 {
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         readonly RoleManager<IdentityRole> roleManager;

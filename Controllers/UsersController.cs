@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStats.Controllers
 {
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
@@ -24,59 +25,9 @@ namespace BookStats.Controllers
             signInManager = manager;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            return View(await repository.UserManager.Users.ToListAsync());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Edit(string userID)
-        {
-            User user = await repository.UserManager.FindByIdAsync(userID);
-            if (user is null)
-            {
-                return NotFound();
-            }
-            var model = new UserEditViewModel
-            {
-                Id = user.Id,
-                Name = user.Name,
-                Surname = user.Surname,
-                UserName = user.UserName,
-                Email = user.Email
-
-            };
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(UserEditViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await repository.UserManager.FindByIdAsync(model.Id);
-                if (user != null)
-                {
-                    user.Name = model.Name;
-                    user.Surname = model.Surname;
-                    user.UserName = model.UserName;
-                    user.Email = model.Email;
-                    var result = await repository.UserManager.UpdateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        ModelState.AddModelError(string.Empty, "Profile has been updated");
-                    }
-                    else
-                    {
-                        foreach (var error in result.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                    }
-                }
-            }
-            return View(model);
-        }
+        public async Task<IActionResult> Index() =>
+            View(await repository.UserManager.Users.ToListAsync());
+        
 
         [HttpGet]
         public async Task<IActionResult> Delete(string userID)

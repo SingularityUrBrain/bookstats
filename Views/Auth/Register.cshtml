@@ -10,36 +10,45 @@
             <h2>@ViewData["Title"]</h2>
         </div>
         <hr />
-        <form method="post" asp-controller="Auth" asp-action="Register">
+        <form method="post" asp-controller="Auth" asp-action="Register" class="was-validated">
             <div class="form-group">
                 <label asp-for="Name"></label><br />
-                <input class="form-control" placeholder="Name" asp-for="Name"/>
+                <input class="form-control" placeholder="Name" asp-for="Name" pattern="^[a-zA-Z\s]+$" minlength="3" required />
+                <div class="invalid-feedback">Please fill out this field.</div>
                 <span class="badge badge-pill badge-danger" asp-validation-for="Name"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Surname"></label><br />
-                <input class="form-control" placeholder="Surname" asp-for="Surname" />
+                <input class="form-control" placeholder="Surname" asp-for="Surname" pattern="^[a-zA-Z\s]+$" minlength="3" required />
+                <div class="invalid-feedback">Please fill out this field.</div>
                 <span class="badge badge-pill badge-danger" asp-validation-for="Surname"></span>
             </div>
             <div class="alert alert-danger form-element mt-2" asp-validation-summary="ModelOnly"></div>
             <div class="form-group">
                 <label asp-for="Email"></label><br />
-                <input class="form-control" placeholder="Email" asp-for="Email" />
+                <input class="form-control" placeholder="Email" asp-for="Email" required minlength="3"/>
+                <div class="invalid-feedback">Please fill out this field.</div>
                 <span class="badge badge-pill badge-danger" asp-validation-for="Email"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UserName"></label><br />
-                <input class="form-control" placeholder="Username" asp-for="UserName" />
+                <input class="form-control" placeholder="Username" asp-for="UserName" pattern="^[A-z][A-z|\.|\s]+$" minlength="3" required/>
+                <div class="invalid-feedback">Please fill out this field.</div>
                 <span class="badge badge-pill badge-danger" asp-validation-for="UserName"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password"></label><br />
-                <input class="form-control" placeholder="Password" asp-for="Password" />
+                <input class="form-control" placeholder="Password" asp-for="Password" minlength="6" required maxlength="50" />
+                <div class="invalid-feedback">Please fill out this field.</div>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    Your password must be 6-30 characters long, contain letters in different cases and numbers, and must not contain spaces, special characters.
+                </small>
                 <span class="badge badge-pill badge-danger" asp-validation-for="Password"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ConfirmPassword"></label><br />
-                <input class="form-control" placeholder="Confirm password" asp-for="ConfirmPassword" />
+                <input class="form-control" placeholder="Confirm password" asp-for="ConfirmPassword" minlength="6" required maxlength="30"/>
+                <div class="invalid-feedback">Please fill out this field.</div>
                 <span class="badge badge-pill badge-danger" asp-validation-for="ConfirmPassword"></span>
             </div>
             <div class="pt-2 text-left d-flex flex-row bd-highlight">

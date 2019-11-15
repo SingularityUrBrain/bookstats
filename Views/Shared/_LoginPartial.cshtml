@@ -23,8 +23,8 @@
                     @if (User.IsInRole("Moderator"))
                     {
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Manage books</a>
-                        <a class="dropdown-item">Manage authors</a>
+                        <a class="dropdown-item" asp-controller="Books" asp-action="Create">Create book</a>
+                        <a class="dropdown-item">Create authors</a>
                     }
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Sign out</a>

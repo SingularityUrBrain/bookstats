@@ -46,7 +46,6 @@ namespace BookStats
                 .AddDefaultTokenProviders();
 
             services.AddControllersWithViews();
-
             services.AddTransient<IRepository, Repository>();
 
             //services.AddRazorPages();
@@ -74,7 +73,6 @@ namespace BookStats
 
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

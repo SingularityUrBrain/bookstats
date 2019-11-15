@@ -9,18 +9,14 @@ namespace BookStats.Models
 {
     public class Author : Entity
     {
-        //public Author()
-        //{
-        //    Books = new HashSet<Book>();
-        //}
 
         [Required(ErrorMessage = "First Name Required")]
         [Display(Name = "First Name")]
         [StringLength(50)]
         public string FirstName { get; set; }
 
-        [Display(Name = "Last Name")]
         [Required(ErrorMessage = "Last Name Required")]
+        [Display(Name = "Last Name")]
         [StringLength(50)]
         public string LastName { get; set; }
 
