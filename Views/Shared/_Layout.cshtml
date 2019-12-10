@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,13 +24,13 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Books" asp-action="Index">Books</a>
+                            <a class="nav-link" asp-controller="Books" asp-action="Index">@Localizer["Books"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Authors</a>
+                            <a class="nav-link" href="#">@Localizer["Authors"]</a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +45,7 @@
     <partial name="_CookieConsentPartial" />
     <footer class="border-top footer text-white bg-secondary">
         <div class="container">
-            &copy; 2019 - BookStats - <u><a class="font-weight-bold text-black-50" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></u>
+            &copy; 2019 - BookStats - <u><a class="font-weight-bold text-black-50" asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a></u>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

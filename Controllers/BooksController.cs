@@ -27,13 +27,13 @@ namespace BookStats.Controllers
             repository = repo;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page=1)
         {
             var books = new PagedData<Book>
             {
-                Data = repository.Books.Take(pageSize).ToList(),
+                Data = repository.Books.Skip(pageSize * (page - 1)).Take(pageSize).ToList(),
                 NumberOfPages = Convert.ToInt32(Math.Ceiling((double)repository.Books.Count() / pageSize)),
-                CurrentPage = 1
+                CurrentPage = page
             };
 
             return View(books);
@@ -106,6 +106,13 @@ namespace BookStats.Controllers
             repository.Context.Books.Remove(book);
             await repository.Context.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Int32 bookId)
+        {
+            var book = await repository.Context.Books.FindAsync(bookId);
+            return View(book);
         }
     }
 }

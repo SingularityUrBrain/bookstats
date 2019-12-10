@@ -13,7 +13,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
-
+using System.Globalization;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Localization;
+using BookStats.Hubs;
 
 namespace BookStats
 {
@@ -49,6 +52,26 @@ namespace BookStats
             services.AddControllersWithViews();
             services.AddTransient<IRepository, Repository>();
             services.AddSignalR();
+
+             services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddMvc().AddViewLocalization();
+            //AddDataAnnotationsLocalization(options => {
+            //    options.DataAnnotationLocalizerProvider = (type, factory) =>
+            //        factory.Create(typeof(SharedResource));
+            //});
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en"),
+                    new CultureInfo("ru"),
+                };
+
+                options.DefaultRequestCulture = new RequestCulture("ru");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +93,14 @@ namespace BookStats
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(locOptions.Value);
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<CommentsHub>("/comment");
+            });
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>

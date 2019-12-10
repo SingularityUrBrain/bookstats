@@ -1,7 +1,10 @@
 ﻿@model UserRegisterViewModel
 
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Sign up";
+    ViewData["Title"] = Localizer["Header"];
 }
 
 <div class="row justify-content-center align-items-center">
@@ -12,43 +15,43 @@
         <hr />
         <form method="post" asp-controller="Auth" asp-action="Register" class="was-validated">
             <div class="form-group">
-                <label asp-for="Name"></label><br />
-                <input class="form-control" placeholder="Name" asp-for="Name" pattern="^[A-Za-zА-яёЁ]+$" minlength="3" required />
-                <div class="invalid-feedback">Please fill out this field.</div>
+                <label asp-for="Name">@Localizer["Name"]</label><br />
+                <input class="form-control" placeholder=@Localizer["Name"] asp-for="Name" pattern="^[A-Za-zА-яёЁ]+$" minlength="3" required />
+                <div class="invalid-feedback">@Localizer["Please"]</div>
                 <span class="badge badge-pill badge-danger" asp-validation-for="Name"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Surname"></label><br />
-                <input class="form-control" placeholder="Surname" asp-for="Surname" pattern="^[A-Za-zА-яёЁ]+$" minlength="3" required />
-                <div class="invalid-feedback">Please fill out this field.</div>
+                <label asp-for="Surname">@Localizer["Surname"]</label><br />
+                <input class="form-control" placeholder=@Localizer["Surname"] asp-for="Surname" pattern="^[A-Za-zА-яёЁ]+$" minlength="3" required />
+                <div class="invalid-feedback">@Localizer["Please"]</div>
                 <span class="badge badge-pill badge-danger" asp-validation-for="Surname"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email"></label><br />
-                <input class="form-control" placeholder="Email" asp-for="Email" required minlength="3" />
-                <div class="invalid-feedback">Please fill out this field.</div>
+                <input class="form-control" placeholder=@Localizer["Email"] asp-for="Email" required minlength="3" />
+                <div class="invalid-feedback">@Localizer["Please"]</div>
                 <span class="badge badge-pill badge-danger" asp-validation-for="Email"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserName"></label><br />
-                <input class="form-control" placeholder="Username" asp-for="UserName" pattern="^[A-Za-zА-яёЁ]\w+$" minlength="3" required />
-                <div class="invalid-feedback">Please fill out this field.</div>
+                <label asp-for="UserName">@Localizer["Username"]</label><br />
+                <input class="form-control" placeholder=@Localizer["Username"] asp-for="UserName" pattern="^[A-Za-zА-яёЁ]\w+$" minlength="3" required />
+                <div class="invalid-feedback">@Localizer["Please"]</div>
                 <span class="badge badge-pill badge-danger" asp-validation-for="UserName"></span>
             </div>
             <div class="alert alert-danger form-element mt-2" asp-validation-summary="ModelOnly"></div>
             <div class="form-group">
-                <label asp-for="Password"></label><br />
-                <input class="form-control" placeholder="Password" asp-for="Password" minlength="6" required maxlength="50" />
-                <div class="invalid-feedback">Please fill out this field.</div>
+                <label asp-for="Password">@Localizer["Password"]</label><br />
+                <input class="form-control" placeholder=@Localizer["Password"] asp-for="Password" minlength="6" required maxlength="50" />
+                <div class="invalid-feedback">@Localizer["Please"]</div>
                 <small id="passwordHelpBlock" class="form-text text-muted">
-                    Your password must be 6-30 characters long, contain letters in different cases and numbers, and must not contain spaces, special characters.
+                    @Localizer["PasswordMessage"]
                 </small>
                 <span class="badge badge-pill badge-danger" asp-validation-for="Password"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword"></label><br />
-                <input class="form-control" placeholder="Confirm password" asp-for="ConfirmPassword" minlength="6" required maxlength="30" />
-                <div class="invalid-feedback">Please fill out this field.</div>
+                <label asp-for="ConfirmPassword">@Localizer["Confirm"]</label><br />
+                <input class="form-control" placeholder=@Localizer["Confirm"] asp-for="ConfirmPassword" minlength="6" required maxlength="30" />
+                <div class="invalid-feedback">@Localizer["Please"]</div>
                 <span class="badge badge-pill badge-danger" asp-validation-for="ConfirmPassword"></span>
             </div>
             <div class="pt-2 text-left d-flex flex-row bd-highlight">
@@ -57,9 +60,9 @@
             <hr />
             <div>
                 <p class="text-black-50">
-                    Already signed up?
+                    @Localizer["Already"]
                     <a class="text-mute" asp-controller="Auth" asp-action="Login">
-                        <u>Sign in</u>
+                        <u>@Localizer["Signin"]</u>
                     </a>
                 </p>
             </div>

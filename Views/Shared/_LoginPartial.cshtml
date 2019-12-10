@@ -1,43 +1,44 @@
 ﻿@using Microsoft.AspNetCore.Identity
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-    <ul class="navbar-nav ml-auto">
-        @if (User.Identity.IsAuthenticated)
-        {
-            <li class="nav-item dropdown">
-                <a class="nav-item nav-link dropdown-toggle mr-md-2" asp-controller="Account" asp-action="Index" id="acc-actions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hello, @User.Identity.Name
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acc-actions">
-                    <a class="dropdown-item" asp-controller="Account" asp-action="Index">My profile</a>
-                    <a class="dropdown-item" asp-controller="Account" asp-action="Edit">Edit profile</a>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" asp-controller="Users" asp-action="Index">Manage users</a>
-                        <a class="dropdown-item" asp-controller="Roles" asp-action="Index">Manage roles</a>
-                    }
-                    @if (User.IsInRole("Moderator"))
-                    {
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" asp-controller="Books" asp-action="Create">Create book</a>
-                        <a class="dropdown-item">Create authors</a>
-                    }
+<ul class="navbar-nav ml-auto">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-item nav-link dropdown-toggle mr-md-2" asp-controller="Account" asp-action="Index" id="acc-actions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @Localizer["Hello"], @User.Identity.Name
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acc-actions">
+                <a class="dropdown-item" href="#">@Localizer["MyProfile"]</a>
+                <a class="dropdown-item" href="#">@Localizer["EditProfile"]</a>
+                @if (User.IsInRole("Admin"))
+                {
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Sign out</a>
-                </div>
-            </li>
-        }
-        else
-        {
-            <li class="nav-item">
-                <a class="nav-link text-white" asp-controller="Auth" asp-action="Login">Sign in</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" asp-controller="Auth" asp-action="Register">Sign Up</a>
-            </li>
-        }
-    </ul>
+                    <a class="dropdown-item" asp-controller="Users" asp-action="Index">@Localizer["ManageUsers"]</a>
+                    <a class="dropdown-item" asp-controller="Roles" asp-action="Index">@Localizer["ManageRoles"]</a>
+                }
+                @if (User.IsInRole("Moderator"))
+                {
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-controller="Books" asp-action="Create">@Localizer["CreateBook"]</a>
+                    <a class="dropdown-item">@Localizer["CreateAuthor"]</a>
+                }
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" asp-controller="Auth" asp-action="Logout">@Localizer["SignOut"]</a>
+            </div>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-controller="Auth" asp-action="Login">@Localizer["SignIn"]</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-controller="Auth" asp-action="Register">@Localizer["SignUp"]</a>
+        </li>
+    }
+</ul>

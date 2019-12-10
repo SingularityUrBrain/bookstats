@@ -1,0 +1,36 @@
+﻿@model Book
+
+
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<body>
+    <div class="ml-5 mr-5">
+        <div class="media mb-4">
+            <img src="@Model.ImgUrl"
+                 class="align-self-start mr-3 rounded-circle"
+                 alt="@Model.Title"
+                 onerror="this.onerror=null;this.src='~/pictures/default.png';"
+                 height="120" width="120">
+            <div class="media-body">
+                <h2>@Localizer["Title"]</h2>
+                <p class="mt-0">@Model.Title</p>
+                <h3>@Localizer["Author"]</h3>
+                <p class="mt-0">@Model.Author.FirstName @Model.Author.LastName</p>
+                <h3>@Localizer["NumberPage"]</h3>
+                <p class="mt-0">@Model.PagesNumber</p>
+                <h3>@Localizer["PublicYear"]</h3>
+                <p class="mt-0">@Model.PublicationYear</p>
+                <h3>@Localizer["Publisher"]</h3>
+                <p class="mt-0">@Model.Publisher</p>
+                <h3>@Localizer["Description"]</h3>
+                <p class="mt-0">@Model.Description</p>
+
+            </div>
+        </div>
+    </div>
+</body>

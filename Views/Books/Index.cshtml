@@ -1,7 +1,10 @@
 ﻿@model BookStats.Controllers.PagedData<BookStats.Models.Book>
 
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Book database";
+    ViewData["Title"] = @Localizer["Header"];
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -1,18 +1,21 @@
 ﻿@model BookStats.Controllers.PagedData<BookStats.Models.Book>
 
 
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 <table class="table" id="body">
     <thead>
         <tr>
-            <th scope="col">Cover</th>
-            <th scope="col">Title</th>
-            <th scope="col">Rating</th>
-            <th scope="col">Author</th>
-            <th scope="col">The number of the pages</th>
-            <th scope="col">The publication year</th>
+            <th scope="col">@Localizer["Cover"]</th>
+            <th scope="col">@Localizer["Title"]</th>
+            <th scope="col">@Localizer["Rating"]</th>
+            <th scope="col">@Localizer["Author"]</th>
+            <th scope="col">@Localizer["NumberPages"]</th>
+            <th scope="col">@Localizer["PublicYear"]</th>
             @if (User.IsInRole("Moderator"))
             {
-                <th scope="col">Action</th>
+        <th scope="col">@Localizer["Action"]</th>
             }
         </tr>
     </thead>
@@ -48,7 +51,7 @@
             </td>
             <td colspan="2">
                 <div class="text-right">
-                    <total name="Books"/>
+                    <total name="Books" />
                 </div>
             </td>
         </tr>

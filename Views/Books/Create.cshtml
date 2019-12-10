@@ -1,42 +1,45 @@
 ﻿@model BookCreateViewModel
 
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "New Book";
+    ViewData["Title"] = @Localizer["Header"];
 }
 
 <div class="container-fluid">
-    <form method="post" asp-controller="Books" asp-action="Create" enctype="multipart/form-data" >
+    <form method="post" asp-controller="Books" asp-action="Create" enctype="multipart/form-data">
         <div class="form-group">
-            <label class="h4" asp-for="Title">Title</label>
-            <input class="form-control" placeholder="Book title" asp-for="Title" />
+            <label class="h4" asp-for="Title">@Localizer["Title"]</label>
+            <input class="form-control" placeholder=@Localizer["TitleHolder"] asp-for="Title" />
             <span class="badge badge-pill badge-danger" asp-validation-for="Title"></span>
         </div>
         <div class="form-group">
-            <label class="h4" asp-for="PublicationYear">PublicationYear</label>
-            <input class="form-control" placeholder="Publucation year" asp-for="PublicationYear"/>
+            <label class="h4" asp-for="PublicationYear">@Localizer["PublicYear"]</label>
+            <input class="form-control" placeholder=@Localizer["PublicYear"] asp-for="PublicationYear" />
             <span class="badge badge-pill badge-danger" asp-validation-for="PublicationYear"></span>
         </div>
         <div class="form-group">
-            <label class="h4" asp-for="PagesNumber">PagesNumber</label>
-            <input class="form-control" placeholder="The number of pages" asp-for="PagesNumber" />
+            <label class="h4" asp-for="PagesNumber">@Localizer["PagesNumber"]</label>
+            <input class="form-control" placeholder=@Localizer["PagesNumber"] asp-for="PagesNumber" />
             <span class="badge badge-pill badge-danger" asp-validation-for="PagesNumber"></span>
         </div>
         <div class="form-group">
-            <label class="h4" asp-for="Publisher">Publisher</label>
-            <input class="form-control" placeholder="Publisher" asp-for="Publisher" />
+            <label class="h4" asp-for="Publisher">@Localizer["Publisher"]</label>
+            <input class="form-control" placeholder=@Localizer["Publisher"] asp-for="Publisher" />
         </div>
         <div class="form-group">
-            <label class="h4" asp-for="Cover">Cover</label>
+            <label class="h4" asp-for="Cover">@Localizer["Cover"]</label>
             <input type="file" class="form-control" asp-for="Cover">
         </div>
         <div class="form-group">
-            <label class="h4" for="descriptiontext" asp-for="Description">Description</label>
-            <textarea placeholder="Add book description"
+            <label class="h4" for="descriptiontext" asp-for="Description">@Localizer["Description"]</label>
+            <textarea placeholder=@Localizer["DescriptionHolder"]
                       class="form-control" rows="3" asp-for="Description"></textarea>
             <span class="badge badge-pill badge-danger" asp-validation-for="Description"></span>
         </div>
         <div class="pt-2 text-left d-flex flex-row bd-highlight">
-            <input class="btn btn-primary mb-3" type="submit" value="Create" />
+            <input class="btn btn-primary mb-3" type="submit" value=@Localizer["Create"] />
         </div>
     </form>
 </div>

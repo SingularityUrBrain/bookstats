@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<User>
 
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "User control panel";
+    ViewData["Title"] = Localizer["Header"];
 }
 
 <body>
