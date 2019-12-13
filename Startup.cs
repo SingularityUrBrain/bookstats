@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 
+
 namespace BookStats
 {
     public class Startup
@@ -47,8 +48,7 @@ namespace BookStats
 
             services.AddControllersWithViews();
             services.AddTransient<IRepository, Repository>();
-
-            //services.AddRazorPages();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,17 +68,32 @@ namespace BookStats
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-            app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                //endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(null, pattern: "Login",
+                    defaults: new { controller = "Auth", action = "Login" });
+                endpoints.MapControllerRoute(null, pattern: "Register",
+                    defaults: new { controller = "Auth", action = "Register" });
+                endpoints.MapControllerRoute(null, pattern: "Books",
+                    defaults: new { controller = "Books", action = "Index"});
+                endpoints.MapControllerRoute(null, pattern: "Books/Create",
+                    defaults: new { controller = "Books", action = "Create" });
+                endpoints.MapControllerRoute(null, pattern: "Roles/Edit",
+                    defaults: new { controller = "Roles", action = "Edit" });
+                endpoints.MapControllerRoute(null, pattern: "Roles/Create",
+                    defaults: new { controller = "Roles", action = "Create" });
+                endpoints.MapControllerRoute(null, pattern: "Roles/Users",
+                        defaults: new { controller = "Roles", action = "UserList" });
+                endpoints.MapControllerRoute(null, pattern: "Users",
+                    defaults: new { controller = "Users", action = "Index" });
+
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(null, pattern: "Privacy", 
+                    defaults: new { controller = "Home", action = "Privacy" });
             });
         }
     }

@@ -1,0 +1,56 @@
+﻿@model BookStats.Controllers.PagedData<BookStats.Models.Book>
+
+
+<table class="table" id="body">
+    <thead>
+        <tr>
+            <th scope="col">Cover</th>
+            <th scope="col">Title</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Author</th>
+            <th scope="col">The number of the pages</th>
+            <th scope="col">The publication year</th>
+            @if (User.IsInRole("Moderator"))
+            {
+                <th scope="col">Action</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model.Data.OrderByDescending(b => b.Rating))
+        {
+            @await Component.InvokeAsync("BookInfo", new { id = b.Id });
+        }
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6">
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-center">
+                        @for (int i = 1; i <= Model.NumberOfPages; i++)
+                        {
+                            if (i == Model.CurrentPage)
+                            {
+                                <li class="page-item active">
+                                    <a class="page-link page-number" href="#">@i<span class="sr-only">(current)</span></a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link page-number" href="#">@i</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </nav>
+            </td>
+            <td colspan="2">
+                <div class="text-right">
+                    <total name="Books"/>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>

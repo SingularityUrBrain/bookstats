@@ -26,9 +26,8 @@ namespace BookStats.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [StringLength(50)]
-        public string ImgUrl => System.IO.File.Exists($"/pictures/book/{Id}.jpg") ?
-            $"/pictures/book/{Id}.jpg" : $"/pictures/default_book.jpg";
+        [StringLength(100)]
+        public string ImgUrl { get; set; } = $"/pictures/default_book.jpg";
             
         [StringLength(50)]
         public string Publisher { get; set; }

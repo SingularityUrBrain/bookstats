@@ -1,4 +1,5 @@
 ﻿using BookStats.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,11 +17,16 @@ namespace BookStats.ViewModels
         public Author Author { get; set; }
 
         [Required]
+        [RegularExpression(@"^[1-9]\d*", ErrorMessage = "Invalid the number of pages")]
         public int PagesNumber { get; set; }
 
         [Required]
-        [Display(Name = "Publication Year")]
+        [RegularExpression(@"[12]\d{3}", ErrorMessage = "Invalid publication year")]
         public int PublicationYear { get; set; }
+
+        public string Publisher { get; set; }
+
+        public IFormFile Cover { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }

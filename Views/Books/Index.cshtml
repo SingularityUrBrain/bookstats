@@ -1,34 +1,31 @@
-﻿@model IEnumerable<Book>
+﻿@model BookStats.Controllers.PagedData<BookStats.Models.Book>
+
 @{
     ViewData["Title"] = "Book database";
 }
 
-<body>
-    <div class="text-left mt-2">
-        <h3 class="display-6">@ViewData["Title"]</h3>
-    </div>
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Cover</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Rating</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">PageNumber</th>
-                    <th scope="col">PublicationYear</th>
-                    @if (User.IsInRole("Moderator"))
-                    {
-                        <th scope="col">Action</th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var b in Model.OrderByDescending(b => b.Rating))
-                {
-                    @await Component.InvokeAsync("BookInfo", new { id = b.Id });
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        $("body").on('click', '.page-number', function () {
+            var page = parseInt($(this).html());
+            $.ajax({
+                url: '@Url.Action("BookListAjax")',
+                data: { "page": page },
+                success: function (data) {
+                    $("#booklist").html(data);
                 }
-            </tbody>
-        </table>
-    </div>
-</body>
+            });
+        });
+    });
+</script>
+
+
+<div class="text-left mt-2">
+    <h3 class="display-6">@ViewData["Title"]</h3>
+</div>
+
+<div id="booklist">
+    @await Html.PartialAsync("BookListAjax")
+</div>
+

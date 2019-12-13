@@ -9,18 +9,18 @@ namespace BookStats.ViewModels
     public class UserRegisterViewModel
     {
         [Required]
-        [RegularExpression(@"^[A-z][A-z|\.|\s]+$",
+        [RegularExpression(@"^[A-Za-zА-яёЁ]\w+$",
             ErrorMessage = "Invalid Username")]
         [Display(Name = "Username")]
         public string UserName { get; set; }
 
         [Required]
-        [RegularExpression(@"^[a-zA-Z\s]+$",
+        [RegularExpression(@"^[A-Za-zА-яёЁ]+$",
             ErrorMessage = "Invalid Name")]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
-        [RegularExpression(@"^[a-zA-Z\s]+$",
+        [RegularExpression(@"^[A-Za-zА-яёЁ]+$",
             ErrorMessage = "Invalid Surname")]
         [Required]
         [Display(Name = "Surname")]

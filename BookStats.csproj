@@ -21,8 +21,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Infrastructure\" />
-    <Folder Include="wwwroot\pictures\book\" />
     <Folder Include="wwwroot\pictures\user\" />
   </ItemGroup>
 

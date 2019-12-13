@@ -1,13 +1,13 @@
 ﻿@model Book
 
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-            .checked {
-            color: orange;
-            }
-        </style>
-    </head>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+        color: orange;
+        }
+    </style>
+</head>
 
 <tr>
     <td><img src="@Model.ImgUrl" class="rounded-circle mt-2" width="64" height="64" /></td>
@@ -23,40 +23,13 @@
         <p>@Model.Author.FirstName</p>
         <p class="text-secondary">@Model.Author.LastName</p>
     </td>
-    <td>@Model.PagesNumber</td>
-    <td>@Model.PublicationYear</td>
+    <td class="text-center align-middle" style="font-size: 1.1em">@Model.PagesNumber</td>
+    <td class="text-center align-middle" style="font-size: 1.1em">@Model.PublicationYear</td>
     @if(User.IsInRole("Moderator"))
     {
-    <td>
+    <td class="align-middle">
         <a class="btn btn-sm btn-outline-danger" asp-controller="Books" asp-action="Delete"
             asp-route-bookId="@Model.Id">Delete</a>
     </td>
     }
 </tr>
-
-    @*<li class="list-group-item d-flex justify-content-between align-items-center">
-        <div class="col-1 align-items-lg-start">
-            <img src="@Model.ImgUrl" class="rounded-circle mt-2" width="64" height="64" />
-        </div>
-        <div class="col-3">
-            <div class="text-left">
-                <h5>@Model.Title</h5>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="text-left">
-                <h5>@Model.Author.FirstName</h5>
-                <p class="text-secondary">@Model.Author.LastName</p>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="text-left">
-                <h5>@Model.PagesNumber</h5>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="text-left">
-                <h5>@Model.PublicationYear</h5>
-            </div>
-        </div>
-    </li>*@

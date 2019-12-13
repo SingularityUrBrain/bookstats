@@ -5,7 +5,10 @@
     @foreach (var user in Model)
     {
         <tr>
-            <td>@user.Email</td>
+            <td>
+                <p>@user.UserName</p>
+                <p class="text-muted">@user.Email</p>
+            </td>
             <td class="text-right">
                 <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userid="@user.Id">Change role</a>
             </td>

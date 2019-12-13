@@ -5,27 +5,35 @@
 }
 
 <div class="container-fluid">
-    <form method="post" asp-controller="Books" asp-action="Create">
+    <form method="post" asp-controller="Books" asp-action="Create" enctype="multipart/form-data" >
         <div class="form-group">
             <label class="h4" asp-for="Title">Title</label>
             <input class="form-control" placeholder="Book title" asp-for="Title" />
-            <span style="color: tomato" asp-validation-for="Title"></span>
+            <span class="badge badge-pill badge-danger" asp-validation-for="Title"></span>
+        </div>
+        <div class="form-group">
+            <label class="h4" asp-for="PublicationYear">PublicationYear</label>
+            <input class="form-control" placeholder="Publucation year" asp-for="PublicationYear"/>
+            <span class="badge badge-pill badge-danger" asp-validation-for="PublicationYear"></span>
+        </div>
+        <div class="form-group">
+            <label class="h4" asp-for="PagesNumber">PagesNumber</label>
+            <input class="form-control" placeholder="The number of pages" asp-for="PagesNumber" />
+            <span class="badge badge-pill badge-danger" asp-validation-for="PagesNumber"></span>
+        </div>
+        <div class="form-group">
+            <label class="h4" asp-for="Publisher">Publisher</label>
+            <input class="form-control" placeholder="Publisher" asp-for="Publisher" />
+        </div>
+        <div class="form-group">
+            <label class="h4" asp-for="Cover">Cover</label>
+            <input type="file" class="form-control" asp-for="Cover">
         </div>
         <div class="form-group">
             <label class="h4" for="descriptiontext" asp-for="Description">Description</label>
             <textarea placeholder="Add book description"
                       class="form-control" rows="3" asp-for="Description"></textarea>
-            <span style="color: tomato" asp-validation-for="Description"></span>
-        </div>
-        <div class="form-group">
-            <label class="h4" asp-for="PublicationYear">PublicationYear</label>
-            <input class="form-control" placeholder="Publucation year" asp-for="PublicationYear" />
-            <span style="color: tomato" asp-validation-for="PublicationYear"></span>
-        </div>
-        <div class="form-group">
-            <label class="h4" asp-for="PagesNumber">PagesNumber</label>
-            <input class="form-control" placeholder="The number of pages" asp-for="PagesNumber" />
-            <span style="color: tomato" asp-validation-for="PagesNumber"></span>
+            <span class="badge badge-pill badge-danger" asp-validation-for="Description"></span>
         </div>
         <div class="pt-2 text-left d-flex flex-row bd-highlight">
             <input class="btn btn-primary mb-3" type="submit" value="Create" />

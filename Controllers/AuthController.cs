@@ -28,6 +28,7 @@ namespace BookStats.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(UserRegisterViewModel model)
         {
             if (ModelState.IsValid)

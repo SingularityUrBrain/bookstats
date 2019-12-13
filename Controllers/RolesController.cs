@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace BookStats.Controllers
 {
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
@@ -16,6 +17,7 @@ namespace BookStats.Controllers
     {
         readonly RoleManager<IdentityRole> roleManager;
         readonly UserManager<User> userManager;
+
         public RolesController(RoleManager<IdentityRole> roleM, UserManager<User> userM)
         {
             roleManager = roleM;
@@ -89,7 +91,8 @@ namespace BookStats.Controllers
 
                 await userManager.AddToRolesAsync(user, addedRoles);
                 await userManager.RemoveFromRolesAsync(user, removedRoles);
-               
+                
+
                 return RedirectToAction("UserList");
             }
             return NotFound();
